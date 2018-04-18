@@ -27,29 +27,29 @@ func (m *PostsDAO) Connect() {
 	db = session.DB(m.Database)
 }
 
-func (m *PostsDAO) FindAll() ([]Post, error) {
-	var posts []Post
+func (m *PostsDAO) FindAll() ([]models.Post, error) {
+	var posts []models.Post
 	err := db.C(collection).Find(bson.M{}).All(&posts)
 	return movies, err
 }
 
-func (m *PostsDAO) FindById(id string) (Post, error) {
-	var post Post
+func (m *PostsDAO) FindById(id string) (models.Post, error) {
+	var post models.Post
 	err := db.C(COLLECTION).FindId(bson.ObjectIdHex(id)).One(&post)
 	return post, err
 }
 
-func (m *PostsDAO) Insert(post Post) error {
+func (m *PostsDAO) Insert(post models.Post) error {
 	err := db.C(COLLECTION).Insert(&post)
 	return err
 }
 
-func (m *PostsDAO) Delete(post Post) error {
+func (m *PostsDAO) Delete(post models.Post) error {
 	err := db.C(COLLECTION).Remove(&post)
 	return err
 }
 
-func (m *PostsDAO) Update(post Post) error {
+func (m *PostsDAO) Update(post models.Post) error {
 	err := db.C(COLLECTION).UpdateId(post.ID, &post)
 	return err
 }
