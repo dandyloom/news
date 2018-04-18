@@ -6,7 +6,6 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/globalsign/mgo/bson"
 	"encoding/json"
-	"./dao"
 )
 
 type User struct {
