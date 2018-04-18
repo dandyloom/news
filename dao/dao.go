@@ -2,7 +2,6 @@ package dao
 
 import (
 	"log"
-	. "./models"
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
 )
