@@ -29,8 +29,8 @@ func (m *PostsDAO) Connect() {
 
 func (m *PostsDAO) FindAll() ([]models.Post, error) {
 	var posts []models.Post
-	err := db.C(collection).Find(bson.M{}).All(&posts)
-	return movies, err
+	err := db.C(COLLECTION).Find(bson.M{}).All(&posts)
+	return posts, err
 }
 
 func (m *PostsDAO) FindById(id string) (models.Post, error) {
