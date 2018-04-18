@@ -6,6 +6,8 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/globalsign/mgo/bson"
 	"encoding/json"
+	"github.com/dandyloom/news/models"
+	"github.com/dandyloom/news/dao"
 )
 
 type User struct {
@@ -62,7 +64,7 @@ func getPost(w http.ResponseWriter, r *http.Request) {
 
 func createPost(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var post Post
+	var post models.Post
 
 	if err := json.NewDecoder(r.Body).Decode(&post); err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid request payload")
@@ -98,7 +100,7 @@ func respondWithError(w http.ResponseWriter, code int, msg string) {
 	respondWithJson(w, code, map[string]string{"error": msg})
 }
 
-func respondWithJson(w ResponseWriter, code int, payload interface{}) {
+func respondWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	response, _ := json.Marshal(payload)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)

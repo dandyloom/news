@@ -4,6 +4,7 @@ import (
 	"log"
 	"github.com/globalsign/mgo"
 	"github.com/globalsign/mgo/bson"
+	"github.com/dandyloom/news/models"
 )
 
 type PostsDAO struct {
