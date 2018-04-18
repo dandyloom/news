@@ -34,6 +34,11 @@ func (m *PostsDAO) FindAll() ([]models.Post, error) {
 }
 
 func (m *PostsDAO) FindById(id string) (models.Post, error) {
+	err := db.C(collection).Find(bson.M{}).All(&posts)
+	return movies, err
+}
+
+func (m *PostsDAO) FindById(id string) (Post, error) {
 	var post models.Post
 	err := db.C(COLLECTION).FindId(bson.ObjectIdHex(id)).One(&post)
 	return post, err
